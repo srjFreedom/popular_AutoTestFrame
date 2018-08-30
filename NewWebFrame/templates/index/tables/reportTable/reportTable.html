@@ -1,0 +1,97 @@
+{% extends 'index/tables/tableTmp.html' %}
+
+{% block list %}
+    <form action="/index/autoTestReport" method="post" class="form-inline" style="padding: 20px 20px 20px 20px">
+        <div class="form-group">
+            <span>报告名称</span>
+            {% if reportName %}
+                <input type="text" class="form-control" name="reportName" value="{{ reportName }}">
+            {% else %}
+                <input type="text" class="form-control" name="reportName">
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <span>执行人</span>
+            <select class="form-control" name="testRunner">
+                <option value=""></option>
+                {% for foo in nameList %}
+                    {% if foo[1] == testRunner %}
+                        <option value="{{ foo[1] }}" selected="selected">{{ foo[1] }}</option>
+                    {% else %}
+                        <option value="{{ foo[1] }}">{{ foo[1] }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <span>项目代号</span>
+            <select class="form-control" name="projectCode">
+                <option value=""></option>
+                {% for foo in proList %}
+                    {% if foo[0] == projectCode %}
+                        <option value="{{ foo[0] }}" selected="selected">{{ foo[0] }}</option>
+                    {% else %}
+                        <option value="{{ foo[0] }}">{{ foo[0] }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <input type="hidden" name="pageCount" value="1">
+        <button type="submit" class="btn btn-default btn-sm">搜索</button>
+    </form>
+
+
+    <div>
+        <table class="table table-striped">
+        <tr><th width="300">报告</th><th width="150">通过率</th><th width="150">执行人</th><th width="150">项目代号</th><th width="280" style="text-align: center">进度</th><th class="neiRongJuZhong">操作</th></tr>
+            {% for foo in tableList %}
+                {% if foo[3] == '0' %}
+                    <tr>
+                        <td>{{ foo[0] }}</td><td>{{ foo[1] }}</td><td>{{ foo[2] }}</td><td>{{ foo[5] }}</td>
+                            <td>
+                                <div id="{{ foo[0] }}" class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-warning active" role="progressbar"
+                                         style="width: {{ foo[4] }}%">
+                                    </div>
+                                </div>
+                            </td>
+                        <td class="neiRongJuZhong">
+                            <a href="/index/autoTestReport/checkReport?reportName={{ foo[0] }}"><button id="{{ foo[0] }}_button" class="btn btn-info btn-sm" disabled="disabled" style="width: 68px">等待完成</button></a>
+                            <a href="/index/autoTestLogView?logName={{ foo[0] }}&requestType=0"><button class="btn btn-info btn-sm" style="width: 65px">LOG信息</button></a>
+                        </td>
+                    </tr>
+                {% elif foo[3] == '1' %}
+                    <tr>
+                        <td>{{ foo[0] }}</td><td>{{ foo[1] }}</td><td>{{ foo[2] }}</td><td>{{ foo[5] }}</td>
+                        <td>
+                            <div id="{{ foo[0] }}" class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar"
+                                     style="width: 100%">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="neiRongJuZhong">
+                            <a href="/index/autoTestReport/checkReport?reportName={{ foo[0] }}"><button id="{{ foo[0] }}_button" class="btn btn-info btn-sm" style="width: 68px">查看</button></a>
+                            <a href="/index/autoTestLogView?logName={{ foo[0] }}&requestType=1"><button class="btn btn-info btn-sm" style="width: 65px">LOG信息</button></a>
+                        </td>
+                    </tr>
+                {% elif foo[3] == '2' %}
+                    <tr>
+                        <td>{{ foo[0] }}</td><td>{{ foo[1] }}</td><td>{{ foo[2] }}</td><td>{{ foo[5] }}</td>
+                        <td>
+                            <div id="{{ foo[0] }}" class="progress">
+                                <div class="progress-bar progress-bar-danger" role="progressbar"
+                                     style="width: 100%">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="neiRongJuZhong">
+                            <a href="/index/autoTestReport/checkReport?reportName={{ foo[0] }}"><button id="{{ foo[0] }}_button" class="btn btn-info btn-sm" disabled="disabled" style="width: 68px">运行失败</button></a>
+                            <a href="/index/autoTestLogView?logName={{ foo[0] }}&requestType=1"><button class="btn btn-info btn-sm" style="width: 65px">LOG信息</button></a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

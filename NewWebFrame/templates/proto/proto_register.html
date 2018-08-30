@@ -1,0 +1,30 @@
+{% extends 'super.html' %}
+{% block head %}
+    {{ super() }}
+    <title>注册</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="myCss/proto_register.css")}}">
+{% endblock %}
+{% block body %}
+    <div id="div_register_back" style="background: url('{{ url_for('static', filename='img/login/3.jpg')}}');background-size:cover;">
+        <div id="div_register" class="alert alert-info">
+            <div id="div_register_title">
+                <span class="register_title_text">注册</span>
+            </div>
+{#            <hr class="big_div_hr">#}
+            <form id="register_form">
+                <input type="text" id="register_input_zhanghao" maxlength="10" placeholder="帐号" class="input_register form-control">
+                <input type="password" id="register_input_mima" maxlength="10" placeholder="密码" class="input_register form-control">
+                <input type="text" id="register_input_nicheng" maxlength="10" placeholder="昵称" class="input_register form-control">
+                <div id="div_shuoming">
+                    <span id="shuoming_text"></span>
+                </div>
+                <input type="button" id="register_button_zhuce" class="btn btn-primary" value="注册">
+                <input type="button" id="register_button_fanhui" class="btn btn-primary" value="返回">
+            </form>
+        </div>
+    </div>
+    {% block script %}
+            {{ super() }}
+        <script type="text/javascript" src="{{ url_for("static", filename="myJs/proto_register.js")}}"></script>
+    {% endblock %}
+{% endblock %}

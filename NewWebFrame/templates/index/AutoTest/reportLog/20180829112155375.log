@@ -1,0 +1,19 @@
+ok test_run_1 (SLG_webUnitTest1.webTest_1)
+2018-08-29_11:22:10 -- this is 1 setUp...
+2018-08-29_11:22:10 -- 1 setUp is over
+2018-08-29_11:22:10 -- this is 1 run...
+2018-08-29_11:22:10 -- 1 run is over
+2018-08-29_11:22:10 -- this is 1 tearDown
+2018-08-29_11:22:10 -- 1 tearDown is over
+2018-08-29_11:22:10 -- 
+2018-08-29_11:22:10 -- ok test_run_2 (SLG_webUnitTest2.webTest_2)
+2018-08-29_11:22:25 -- this is 2 setUp...
+2018-08-29_11:22:25 -- 2 setUp is over
+2018-08-29_11:22:25 -- this is 2 run...
+2018-08-29_11:22:25 -- 2 run is over
+2018-08-29_11:22:25 -- this is 2 tearDown
+2018-08-29_11:22:25 -- 2 tearDown is over
+2018-08-29_11:22:25 -- 
+2018-08-29_11:22:25 -- 
+2018-08-29_11:22:25 -- Time Elapsed: 0:00:30.283000
+2018-08-29_11:22:25 -- 

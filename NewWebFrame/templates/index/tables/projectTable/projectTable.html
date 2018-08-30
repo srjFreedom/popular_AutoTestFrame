@@ -1,0 +1,23 @@
+{% extends 'index/tables/tableTmp.html' %}
+
+{% block list %}
+    {{ super() }}
+    <div>
+        <table class="table table-striped">
+            <tr><th>项目</th><th>操作</th></tr>
+                {% for foo in tableList %}
+                <tr>
+                    {% if func == 'autoTestRun' %}
+                    <td>{{ foo[1] }}</td><td><a href="javascript: projectWait('{{ foo[0] }}')"><button class="btn btn-info btn-sm">进入</button></a></td>
+                    {% elif func == 'protoRun' %}
+                    <td>{{ foo[1] }}</td><td><a href="{{ url_for('proto.choose_proto_project') }}?request={{ foo[0] }}"><button class="btn btn-info btn-sm">进入</button></a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+
+    {% block script %}
+        {{ super() }}
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'super.html' %}
+
+{% block body %}
+    <div id="logView"></div>
+
+
+    {% block script %}
+        {{ super() }}
+        <script type="text/javascript">
+        window.onload = function () {
+            var host = "ws://127.0.0.1:7777";
+            socket = new WebSocket(host);
+
+            socket.onopen = function () {
+                console.log('socket已连接');
+            }
+            socket.onmessage = function (msg) {
+                document.getElementById("logView").innerHTML += msg.data;
+                socket.send(1);
+            }
+            socket.onerror = function () {
+                console.log('socket异常');
+            }
+        }
+        window.onbeforeunload = function () {
+            socket.close();
+            console.log('socket已断开');
+        }
+        </script>
+    {% endblock %}
+{% endblock %}

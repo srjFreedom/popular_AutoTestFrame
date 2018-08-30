@@ -1,0 +1,177 @@
+// 统一错误码
+enum e_code{
+	none = 0; 
+	ok = 1;   									// 正常返回
+	e_gold_not_enough = 2;						// 元宝不足
+	e_lv_not_enough = 3;						// 等级不足
+	e_goods_not_exist = 4; 						// 物品不存在
+	e_scene_not_exist = 5;    					// 场景不存在
+	e_full_goods_cell = 6;						// 背包已满
+	e_vip_lv_not_enough = 8; 					// VIP等级不足
+	e_config_error = 9;							// 配置错误
+	e_exception = 10;                      		// 异常
+	e_goods_not_enough = 11;					// 物品不足
+	e_num_less_zero = 12;						// 数字不能为负
+	e_lock = 13;								// 功能未解锁
+	e_goods_use_type_error = 14;				// 物品类型配置错误
+	e_num_overflow = 15;						// 超出允许数量
+	e_lingshi_not_enough = 17;                  // 灵石不足
+	e_energy_not_enough = 18;                  	// 体力不足
+	e_spell_not_enough = 19;                  	// 灵符不足
+	e_super_spell_not_enough = 20;              // 超级灵符不足
+	e_player_score_not_enough = 21;             // 积分不足
+	//上面是公用错误码
+
+	//帐号错误码
+	e_sense_nick = 1001;						// 玩家名含有敏感字符
+	e_user_not_found = 1002;					// 玩家不存在
+	e_be_ban = 1003;                           	// 您已被封号，请联系管理员
+	e_login_timeout = 1004;                  	// 登录超时
+	e_user_have_register = 1005;             	// 玩家已经注册
+	e_nick_have_exists = 1006;					// 玩家名已经占用
+	e_nick_len_error   = 1007;					// 玩家名只能是1-6个汉字
+	e_nick_illegal	= 1008;						// 玩家名含有非法字符
+	e_sign_error		= 1009;              	// 验证失败
+	e_main_node_error = 1010;                   // 没有可用节点
+	e_accname_error = 1011;						// 账号名不合法
+
+	//物品
+	e_trump_not_exists = 1200;					// 法宝不存在
+	e_only_can_swallow_trump = 1201;			// 只能吞噬法宝
+	e_trump_have_equip = 1202;					// 法宝穿戴在伙伴身上
+	e_only_can_equip_trump = 1203;              // 只能装备法宝
+	e_trump_have_not_equip = 1204;				// 法宝没装备到伙伴
+	e_goods_cannot_sell = 1205;					// 该物品不可以出售
+	e_goods_cannot_use = 1206; 					// 物品不可以使用
+	e_goods_cannot_batch_use = 1207;            // 物品不可以批量使用
+	e_need_goods_not_enough = 1208;             // 所需物品不足
+
+	//任务
+	e_task_not_finish = 1300;					// 任务还没完成
+	e_task_have_reward = 1301;					// 任务已经领奖
+	e_task_secret_have_reward = 1302;			// 秘闻奖励已经领取
+
+	//伙伴错误吗
+	e_partner_not_exists = 1401;                // 伙伴不存在
+	e_goods_lingshi_not_enough = 1402;			// 灵石数量不足
+	e_partner_up_star_material_not_enough = 1403;    // 伙伴升星材料不足
+	e_partner_have_wake = 1404;					// 伙伴已经觉醒
+	e_partner_wake_goods_not_enough = 1405;     // 觉醒材料不足
+	e_partner_skin_not_exists = 1406;			// 皮肤不存在
+	e_up_star_not_max_lv = 1407;				// 伙伴等级未达到当前星级的最大等级
+
+	//宠物
+	e_pet_have_equip = 1500;                    // 灵宠已经装备
+	e_pet_not_exists = 1501;                    // 灵宠不存在
+
+	//主角
+	e_major_not_exists = 1601;                  // 主角还没激活
+	e_major_have_equip = 1602;                  // 主角已经装备
+	e_major_skill_not_unlock = 1603;            // 主角技能还没解锁
+	e_major_skill_have_equip = 1604;            // 该技能已经装备
+
+	//试练
+	e_trial_not_exists = 1700;                  // 试练副本不存在
+	e_trial_partner_limit = 1701;               // 报名伙伴熟练超出上限
+	e_trial_partner_lv_not_enough = 1702;       // 伙伴等级不足
+	e_trial_box_have_reward = 1703;             // 宝箱已经领取
+	e_trial_event_have_not_finish = 1704;       // 事件没完成
+	e_trial_need_seal = 1705;                   // 需要启封符开启
+	e_trial_not_need_seal = 1706;               // 不需要启封符开启
+	e_trial_have_not_finish = 1707;             // 通关本层才能进入下一层
+	e_trial_shop_buy_empty = 1708;              // 商品全部售罄了
+	e_trial_shop_item_buy = 1709;               // 这个商品已经售罄了！
+	e_trial_score_not_enough = 1710;            // 你没有足够的积分
+	e_trial_seal_not_enough = 1711;             // 启封符不足
+	e_trial_role_failure = 1712; 				// 该角色已经被击败
+	e_trial_role_hp_full = 1713;				// 该角色血量已满
+	e_trial_recover_not_enough = 1714;			// 恢复药剂不足
+
+	//18合成
+	e_compose_partner_goods_not_enough = 1800; // 伙伴图纸不足
+	e_compose_partner_not_enough = 1801;       // 伙伴材料不足
+	e_compose_trump_not_enough = 1802;         // 法宝碎片不足
+
+	//19主城
+	e_mcity_rob_not_open = 1900;         		// 主城防守功能还未开启  
+	e_mcity_avatar_is_exist = 1901;             // 本主题已经购买    
+	e_mcity_rob_list_refresh_limit = 1902;      // 主城掠夺列表刷新间隔没到
+	e_mcity_rob_times_not_enough = 1903;        // 掠夺次数不足
+	e_mcity_goods_fragment_not_enough = 1904;   // 法宝碎片不足
+	e_mcity_have_rob = 1905;                    // 您已经掠夺该玩家
+	e_mcity_have_online = 1906;                 // 对方已经在线，不可以掠夺
+	e_mcity_win_rob_empty = 1907;               // 有人捷足先登，本次掠夺一无所获
+	e_mcity_log_not_exists = 1908;              // 无法获取目标玩家数据！
+	e_mcity_goods_fragment_full = 1909;         // 法宝碎片已满，请先合成
+
+	//20邮件
+	e_mail_not_found = 2000;                      // 未找到该邮件
+
+	//22秘境
+	e_wonderland_not_exists = 2200;             	// 秘境副本不存在
+	e_wonderland_partner_limit = 2201;              // 报名伙伴熟练超出上限
+	e_wonderland_partner_lv_not_enough = 2202;      // 伙伴等级不足
+	e_wonderland_pass_rewarded = 2203;              // 密境通关奖励已经领取了
+	e_wonder_land_not_triggered = 2204;             // 所属触发器未出发
+	e_wonderland_box_opened = 2205;                 // 宝箱已经打开了
+
+	//25 商城
+	e_version_error = 2500;                     // 版本号不正确
+	e_max_num = 2501;                           // 购买数量达到上限
+	e_time_incorrect = 2502;                    // 时间不正确
+
+	//28 副本
+    e_dungeon_locked = 2801;                    // 未解锁
+    e_dungeon_not_open = 2802;                  // 未开启
+    e_dungeon_max_pos = 2803;                   // 已到顶层
+    e_dungeon_pos_incorrect = 2804;             // 难度未解锁
+    e_dungeon_not_found = 2805;                 // 未找到该副本
+    e_dungeon_partner_max = 2806;               // 布阵伙伴达到上限
+    e_dungeon_partner_pos_incorrect = 2807;     // 伙伴不正确
+    e_dungeon_failed = 2808;                    // 挑战失败
+    e_dungeon_unlock_next = 2809;               // 解锁下一个关
+
+    //29 抽卡
+    e_draw_pool_not_found = 2901;               // 未找到卡池
+
+    //30 签到
+    e_sign_signed = 3000 ;                      // 已经签到过了
+
+    //31好友
+    e_nickname_not_exists = 3100;               // 查找不到该玩家
+    e_is_my_friend = 3102;						// 你们已经是好友啦
+    e_friend_full_cannot_apply = 3103;			// 您好友已满，无法申请
+    e_friend_donate_times_full = 3104;			// 您今日捐赠次数已满
+    e_friend_have_donate = 3105;                // 该好友您今天已经捐赠
+
+    //32 练功房
+    e_exp_train_pos_no_partner = 3200;          // 该位置没有伙伴
+    e_exp_train_locked = 3201;                  // 未解锁
+    e_exp_training_partner = 3202;              // 伙伴正在该位置修炼中
+    e_exp_train_already_unlock = 3203;          // 已经解锁
+    e_exp_train_config_not_found = 3204;        // 配置未找到
+
+    //33竞技场
+    e_arena_buy_times_limit = 3300;             // 今日购买次数已达上限
+    e_arena_have_times = 3301;                  // 您还有挑战次数，不需要购买
+    e_arena_data_expired = 3302;                // 竞技场数据过期
+    e_arena_first_reward_have_reward = 3303;    // 竞技场首次到达排行奖励已经领取
+    e_arena_first_reward_not_reach = 3304;      // 竞技场首次排名奖励还没到达
+    e_arena_bought = 3305;                      // 已购买
+    e_arena_refresh_cost_not_enough = 3306;     // 刷新消耗不足
+    e_score_not_enough = 3307;                  // 积分不足
+    e_arena_player_rank_data_expired = 3308;	// 竞技场排行榜玩家数据已过期
+    e_arena_challenge_times_not_enough = 3309;  // 竞技场挑战次数不足
+
+    //实时pvp
+    e_score_match_locked = 3400;                // 未解锁
+    e_score_match_not_sign_state = 3401;        // 不是报名阶段
+    e_score_match_signed_up = 3402;             // 已报名
+    e_score_not_match_state = 3403;             // 不是匹配阶段
+    e_score_match_player_state = 3404;          // 玩家状态不正确
+    e_score_match_player_unsigned = 3405;       // 未报名
+    e_score_match_count_not_enough = 3406;      // 挑战次数不足(当前版本为体力)
+    e_score_match_punish_time = 3407;           // 逃跑惩罚中
+    e_score_match_pos_incorrect = 3408;         // 阵容信息有误
+}
+message e_error_test{}

@@ -1,0 +1,25 @@
+{% extends 'super.html' %}
+{% block head %}
+    {{ super() }}
+    <title>选择服务器</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='myCss/choose_server.css')}}">
+{% endblock %}
+{% block body %}
+    <div id="div_servers_back" style="background: url('{{ url_for('static', filename='img/login/3.jpg')}}');background-size:cover;">
+        <div id="div_servers" class="alert alert-info">
+            <div id="div_servers_title">
+                <span class="servers_title">选择服务器</span>
+            </div>
+{#            <hr class="big_div_hr">#}
+            <div id="div_servers_buttons">
+                {% for server in serverlist %}
+                    <button class="servers_button btn btn-primary" id="{{ server['id'] }}">{{ server['name'] }}</button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% block script %}
+        {{ super() }}
+        <script type="text/javascript" src="{{ url_for('static', filename='myJs/proto_csserver.js')}}"></script>
+    {% endblock %}
+{% endblock %}

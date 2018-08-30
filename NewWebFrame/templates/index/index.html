@@ -1,0 +1,80 @@
+{% extends "super.html" %}
+
+
+{% block head %}
+    {{ super() }}
+    <link type="text/css" href="{{ url_for("static", filename="myCss/sidebar-menu.css") }}" rel="stylesheet">
+    <style type="text/css">
+    body {
+        overflow-y: hidden;
+    }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="body-logo">
+        <img src="{{ url_for("static", filename="img/logo/logoT.png") }}">
+    </div>
+    <div class="body-header">
+        <table class="header-table">
+            <tr>
+                <td>欢迎进入炎龙测试平台，<a href="#">{{ username }}</a></td>
+                <td><a href="/login">退出</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="menu-sidebar" class="main-sidebar sidebar">
+        <ul class="sidebar-menu">
+            <li class="treeview">
+                <a href="/index">
+                    <i class="glyphicon glyphicon-home"></i><span> 首 页</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-send"></i><span> 测 试 管 理</span> <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="javascript: load_TestPro('autoTestRun');"><i class="glyphicon glyphicon-flash"></i><span> 功能自动化测试</span></a></li>
+                    <li><a href="javascript: load_TestPro('protoRun');"><i class="glyphicon glyphicon-sort"></i><span> 协议测试</span></a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-duplicate"></i><span> 报 告 管 理</span> <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="javascript: load_TestReport();"><i class="glyphicon glyphicon-leaf"></i><span> 功能自动化报告</span></a></li>
+    {#                <li><a href="#"><i class="glyphicon glyphicon-leaf"></i><span> 性能测试报告</span></a></li>#}
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-cog"></i><span> 系 统 管 理</span> <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="glyphicon glyphicon-briefcase"></i><span> 权限管理</span></a></li>
+                    <li><a href="javascript: load_project_manager();"><i class="glyphicon glyphicon-tasks"></i><span> 项目管理</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="body-content" id="viewDiv">
+        <iframe class="content-iframe" id="viewFrame" src="{{ url_for('static', filename='fire_ball.html') }}">
+
+        </iframe>
+    </div>
+
+    <div class="body-log" id="viewLog">
+    </div>
+
+    {% block script %}
+        {{ super() }}
+        <script type="text/javascript" src="{{ url_for("static", filename="myJs/sidebar-menu.js") }}"></script>
+    {% endblock %}
+
+{% endblock %}

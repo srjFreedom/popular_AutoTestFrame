@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block head %}
+        <link type="image/png" href="{{ url_for('static', filename='img/i/house108.png') }}" rel="icon">
+        <link type="text/css" href="{{ url_for("static", filename="bootstrap-3.3.7/css/bootstrap.min.css") }}" rel="stylesheet">
+        <link type="text/css" href="{{ url_for("static", filename="myCss/myStylesheet.css") }}" rel="stylesheet">
+        <link type="text/css" href="{{ url_for("static", filename="myCss/proto_tanchuang.css") }}" rel="stylesheet">
+    {% endblock %}
+
+</head>
+<body class="body-color">
+
+    {% block body %}
+
+
+        {% block loading %}
+            <div id="overlay" class="overlay">
+                <div id="loadingTip" class="loading-tip">
+                    <img src="{{ url_for('static', filename='img/waitIcon/wait.gif') }}">
+                </div>
+            </div>
+        {% endblock %}
+        {% block script %}
+            <script type="text/javascript" src="{{ url_for("static", filename="jquery/jquery-3.1.1.min.js") }}"></script>
+            <script type="text/javascript" src="{{ url_for("static", filename="bootstrap-3.3.7/js/bootstrap.min.js") }}"></script>
+            <script type="text/javascript" src="{{ url_for("static", filename="myJs/myJavascripts.js") }}"></script>
+            <script type="text/javascript" src="{{ url_for("static", filename="myJs/proto_main_tanchuang.js") }}"></script>
+        {% endblock %}
+
+    {% endblock %}
+
+</body>
+</html>

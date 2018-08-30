@@ -1,0 +1,28 @@
+{% extends 'super.html' %}
+{% block head %}
+    {{ super() }}
+    <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="myCss/proto_login.css")}}">
+{% endblock %}
+{% block body %}
+    <div id="div_login_back" style="background: url('{{ url_for('static', filename='img/login/3.jpg')}}');background-size:cover;">
+        <div id="div_login" class="alert alert-info">
+            <div id="div_login_title">
+                <span class="login_title_text">登录</span>
+            </div>
+{#            <hr class="big_div_hr">#}
+            <form id="login_form">
+                <input type="text" id="login_input_zhanghao" maxlength="10" placeholder="用户名" class="input_login form-control">
+                <input type="password" id="login_input_mima" maxlength="10" placeholder="密码" class="input_login form-control">
+                <div id="div_shuoming">
+                    <span id="shuoming_text"></span>
+                </div>
+                <input type="button" id="login_button_login" class="button_login btn btn-primary" value="登录">
+                <input type="button" id="login_button_zhuce" class="button_zhuce btn btn-link" value="注册">
+            </form>
+        </div>
+    </div>
+    {% block script %}
+            {{ super() }}
+        <script type="text/javascript" src="{{ url_for("static", filename="myJs/proto_login.js")}}"></script>
+    {% endblock %}
+{% endblock %}

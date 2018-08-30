@@ -1,0 +1,94 @@
+{% extends "super.html" %}
+
+{% block body %}
+
+    {% block list %}
+    {% endblock %}
+
+    <nav class="fenye-center">
+        <ul class="pagination">
+            <li>
+                {% if tmpType == 0 %}
+                    <a href="/index/TestPro?pageCount=1&func={{ func }}">
+                {% elif tmpType == 1 %}
+                    <a href="javascript: reportFenYe('1','{{ reportName }}','{{ testRunner }}','{{ projectCode }}');">
+                {% endif %}
+                    <span>首页</span>
+                </a>
+            </li>
+            {% if tablePageCount < 8 %}
+                {% for foo in range(1, tablePageCount + 1) %}
+                    {% if foo == pageCount %}
+                        <li><span style="background-color: #ddd">{{ foo }}</span></li>
+                    {% else %}
+                        {% if tmpType == 0 %}
+                            <li><a href="/index/TestPro?pageCount={{ foo }}">{{ foo }}</a></li>
+                        {% elif tmpType == 1 %}
+                            <li><a href="javascript: reportFenYe('{{ foo }}','{{ reportName }}','{{ testRunner }}','{{ projectCode }}');">{{ foo }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {% if pageCount - 4 < 1 %}
+                    {% for foo in range(1, 8) %}
+                        {% if foo == pageCount %}
+                            <li><span style="background-color: #ddd">{{ foo }}</span></li>
+                        {% else %}
+                            {% if tmpType == 0 %}
+                                <li><a href="/index/TestPro?pageCount={{ foo }}">{{ foo }}</a></li>
+                            {% elif tmpType == 1 %}
+                                <li><a href="javascript: reportFenYe('{{ foo }}','{{ reportName }}','{{ testRunner }}','{{ projectCode }}');">{{ foo }}</a></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    <li><span>...</span></li>
+                {% elif pageCount + 4 > tablePageCount %}
+                    <li><span>...</span></li>
+                    {% for foo in range(tablePageCount - 6, tablePageCount + 1) %}
+                        {% if foo == pageCount %}
+                            <li><span style="background-color: #ddd">{{ foo }}</span></li>
+                        {% else %}
+                            {% if tmpType == 0 %}
+                                <li><a href="/index/TestPro?pageCount={{ foo }}">{{ foo }}</a></li>
+                            {% elif tmpType == 1 %}
+                                <li><a href="javascript: reportFenYe('{{ foo }}','{{ reportName }}','{{ testRunner }}','{{ projectCode }}');">{{ foo }}</a></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <li><span>...</span></li>
+                    {% for foo in range(pageCount - 3, pageCount + 4) %}
+                        {% if foo == pageCount %}
+                            <li><span style="background-color: #ddd">{{ foo }}</span></li>
+                        {% else %}
+                            {% if tmpType == 0 %}
+                                <li><a href="/index/TestPro?pageCount={{ foo }}">{{ foo }}</a></li>
+                            {% elif tmpType == 1 %}
+                                <li><a href="javascript: reportFenYe('{{ foo }}','{{ reportName }}','{{ testRunner }}','{{ projectCode }}');">{{ foo }}</a></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    <li><span>...</span></li>
+                {% endif %}
+            {% endif %}
+            <li>
+                {% if tmpType == 0 %}
+                    <a href="/index/TestPro?pageCount={{ tablePageCount }}&func={{ func }}">
+                {% elif tmpType == 1 %}
+                    <a href="javascript: reportFenYe('{{ tablePageCount }}','{{ reportName }}','{{ testRunner }}','{{ projectCode }}');">
+                {% endif %}
+                    <span>尾页</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    {% block loading %}
+        {{ super() }}
+    {% endblock %}
+    {% block script %}
+        {{ super() }}
+        <script type="text/javascript" src="{{ url_for("static", filename="myJs/tableTmp.js") }}"></script>
+    {% endblock %}
+
+{% endblock %}

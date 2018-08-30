@@ -1,0 +1,25 @@
+ok test_run_1 (LJS_webUnitTest1.webTest_1)
+this is 1 setUp...
+1 setUp is over
+this is 1 run...
+1 run is over
+1 run is over
+1 run is over
+1 run is over
+1 run is over
+1 run is over
+1 run is over
+1 run is over
+this is 1 tearDown
+1 tearDown is over
+
+ok test_run_2 (LJS_webUnitTest2.webTest_2)
+this is 2 setUp...
+2 setUp is over
+this is 2 run...
+2 run is over
+this is 2 tearDown
+2 tearDown is over
+
+
+Time Elapsed: 0:00:41.519000

@@ -1,0 +1,16 @@
+
+# # # # # # # # # # 脚 本 已 开 始 运 行 # # # # # # # # # #
+
+
+运行报错！报错信息:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\PythonSc\NewWebFrame\lib\autoTestFrame\testCaseRunner.py", line 87, in runnerMode
+    self.runner.run(allTestCase)
+  File "C:\Users\Administrator\Desktop\PythonSc\NewWebFrame\lib\autoTestFrame\HTMLRunner.py", line 596, in run
+    a = 1 / 0
+ZeroDivisionError: integer division or modulo by zero
+
+
+完成
+

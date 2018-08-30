@@ -1,0 +1,25 @@
+{% extends "super.html" %}
+
+
+{% block body %}
+
+    <div style="margin-left: 10px">
+        <h1>{{ projectCode }} 自 动 化 脚 本</h1>
+    </div>
+    <form id="scripts_ready" action="/index/autoTestRunner" method="post">
+        <div style="margin-left: 40px">
+            <input type="text" name="phone_ip" placeholder="请输入待测手机IP...">
+            <button class="btn btn-success" type="button" onclick="javascript:runAutoTest();">开 始 执 行</button>
+            <ul id="demo" style="display: block">
+                <a href="javascript:allCheck();" id="checkStat" style="color: #31b0d5">全选/清空</a>
+                {{ directorList | safe }}
+            </ul>
+        </div>
+    </form>
+
+    {% block script %}
+        {{ super() }}
+        <script type="text/javascript" src="{{ url_for("static", filename="myJs/autoDirectorJs.js") }}"></script>
+    {% endblock %}
+
+{% endblock %}

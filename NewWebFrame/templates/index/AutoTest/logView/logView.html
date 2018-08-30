@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{{ url_for("static", filename="bootstrap-3.3.7/css/bootstrap.min.css") }}" rel="stylesheet">
+
+
+</head>
+<body onload="document.body.scrollTop=document.body.scrollHeight">
+
+    <div id="logView" style="margin-left: 10px"></div>
+
+    <a id="bottom" name="bottom"></a>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var requestType = {{ requestType }};
+            if (requestType == "1") {
+                load_autoTestLogRun("{{ logName }}");
+            }
+            else if (requestType == '0') {
+                var c = setInterval(load_autoTestLogRun, 1000, "{{ logName }}");
+            }
+
+        }
+    </script>
+    <script type="text/javascript" src="{{ url_for("static", filename="jquery/jquery-3.1.1.min.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="bootstrap-3.3.7/js/bootstrap.min.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='myJs/logView.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'super.html' %}
+{% block head %}
+    {{ super() }}
+    <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="myCss/project_manege.css")}}">
+{% endblock %}
+{% block body %}
+    <div id="div_back">
+        <div id="div_project_list">
+            <div id="div_project_list_title" class="div_title">
+                <span id="text_project_list_title">选择项目</span>
+            </div>
+            <table class="table_project" id="table_projectList">
+                <tbody id="tbody_table_projectList">
+                </tbody>
+            </table>
+        </div>
+        <div id="div_project_info">
+            <div id="div_project_info_title" class="div_title">
+                <span id="text_project_info_title">项目信息</span>
+            </div>
+            <div id="div_project_info_head">
+                <div id="div_project_info_head_text_code" class="div_project_info_text">
+                    <span class="text_select_project_left">项目CODE</span>
+                    <span id="text_select_code" class="text_select_project_nomal">未选中</span>
+                </div>
+                <div id="div_project_info_head_text_name" class="div_project_info_text">
+                    <span class="text_select_project_left">项目Name</span>
+                    <span id="text_select_name" class="text_select_project_nomal">未选中</span>
+                </div>
+                <button id="button_project_info_delete" class="btn btn-primary" onclick="javascript:delete_sql();">删除</button>
+            </div>
+        </div>
+        <div id="div_add_project">
+            <div id="div_add_project_title" class="div_title">
+                <span id="text_add_project_title">新增项目</span>
+            </div>
+            <form id="form_add_project">
+                <span class="text_add_project_nomal">项目CODE：</span>
+                <input type="text" id="input_add_project_id" maxlength="7">
+                <span class="text_add_project_nomal">项目名称：</span>
+                <input type="text" id="input_add_project_name" maxlength="8">
+            </form>
+            <button id="button_add_project_queren" class="btn btn-primary" onclick="javascript:add_sql();">增加项目</button>
+        </div>
+    </div>
+
+
+    {% block script %}
+            {{ super() }}
+        <script type="text/javascript" src="{{ url_for("static", filename="myJs/project_manege.js")}}"></script>
+    {% endblock %}
+{% endblock %}

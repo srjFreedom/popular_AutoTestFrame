@@ -1,0 +1,5 @@
+[CasePath]
+cspath = ("E:/AutotestFrame/AutotestFrame/frameDemo", "E:/AutotestFrame/AutotestFrame/abbb")
+
+[CaseRule]
+csrule = unit*.py

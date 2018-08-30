@@ -1,0 +1,145 @@
+{% extends 'super.html' %}
+{% block head %}
+    {{super()}}
+    <title>协议测试</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="myCss/proto_main.css")}}">
+{% endblock %}
+{% block body %}
+    <div id="div_main">
+        <div id="div_main_head">
+            <span class="glyphicon glyphicon-tree-deciduous main_head_text_icon"></span>项目:<span id="main_head_project" class="main_head_text">{{ project }}</span>
+            <span class="glyphicon glyphicon-leaf main_head_text_icon"></span>服务器:<span id="main_head_server" class="main_head_text">{{ server }}</span>
+            <span class="glyphicon glyphicon-user main_head_text_icon"></span>账号:<span id="main_head_zhanghao" class="main_head_text">{{ username }}</span>
+            <span class="glyphicon glyphicon-star-empty main_head_text_icon"></span>昵称:<span id="main_head_name" class="main_head_text">昵称获取中...</span>
+            <button id="button_main_head_zhuxiao" class="btn btn-link">账号注销</button>
+        </div>
+        <div id="div_buju_left" class="div_buju">
+            <div id="div_control" class="div_kuangti">
+                <div id="div_control_form">
+                    <form id="form_control">
+                        <span class="div_control_text">系统选择：</span><br>
+                        <select id="form_control_select_xitong" name="form_control_select_xitong" class="control_select form-control">
+                            <option id="form_control_select_xitong_0" name="form_control_select_xitong_0" selected="selected" value ="0">
+                                请选择系统
+                            </option>
+
+                            {% for xitong in xitonglist %}
+                                <option id="form_control_select_xitong_{{ loop.index }}" name="form_control_select_xitong_{{ loop.index }}" value="{{ loop.index }}">
+                                    {{xitong}}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <span class="div_control_text">协议选择：</span><br>
+                        <select id="form_control_select_xieyi" name="form_control_select_xieyi" class="control_select form-control">
+
+                        </select>
+                        <span class="div_control_text">输入协议各字段参数：</span><br>
+                        <input type="text" id="input_control_xieyicanshu" name="input_control_xieyicanshu" class="form-control">
+                        <span class="div_control_text">并发发送次数：</span><br>
+                        <input type="text" id="input_control_xieyicishu" name="input_control_xieyicishu" maxlength="10" class="form-control">
+                        <input type="button" id="button_control_xieyifasong" name="button_control_xieyifasong" value="发送"  class="btn btn-primary">
+                    </form>
+                </div>
+                <hr class="hr_inbox" id="control_hr1">
+                <div id="div_control_xieyishuom">
+                    <span class="div_control_text">协议说明：</span><br>
+                    <div id="div_control_xieyishuom_text" class="div_text_back alert alert-info">
+                        <span class="div_display_text" id="control_xieyishuom_text">
+                        </span>
+                    </div>
+                </div>
+                <div id="div_control_img">
+                    <img src="{{ url_for("static", filename="img/proto/logoT.png")}}" id="img_control_logo">
+                </div>
+            </div>
+        </div>
+        <div id="div_buju_mid" class="div_buju">
+            <div id="div_jieshou" class="div_kuangti">
+                    <div id="div_jieshou_head">
+                        <span class="div_control_text">接收消息队列：</span>
+                    </div>
+                    <button id="button_jieshou_qingkong" class="btn btn-primary">清空消息</button>
+                    <div id="div_jiehsou_xianshi"  class="div_text_back  alert alert-info">
+                        <span class="div_display_text" id="jiehsou_xianshi">
+
+                        </span>
+                    </div>
+            </div>
+        </div>
+        <div id="div_buju_right" class="div_buju">
+            <div id="div_jieshou_chaxun" class="div_kuangti">
+                <span class="div_control_text">输入结果码查询说明：</span><br>
+                <form id="form_jieshou_chaxun">
+                    <input type="text" id="input_jieshou_chaxun" name="input_jieshou_chaxun" class="form-control">
+                    <input type="button" id="button_jiehsou_chaxun_fasong" name="button_jiehsou_chaxun_fasong" value="查询"  class="btn btn-primary">
+                </form>
+                <div id="div_jiehsou_chaxun_jieguo"  class="div_text_back alert alert-info">
+                    <span class="div_display_text" id="jiehsou_chaxun_jieguo"></span>
+                </div>
+            </div>
+            <br>
+            <div id="div_gm" class="div_kuangti">
+                <form id="form_gm">
+                    <span class="div_control_text">发送gm命令：</span><br>
+                    <input type="text" id="input_gm" name="input_gm" maxlength="20" class="form-control">
+                    <input type="button" id="button_gm_fasong" name="button_gm_fasong" value="发送gm" class="btn btn-primary" onclick="click_ccc()">
+                </form>
+            </div>
+            <br>
+            <div id="div_chaxun" class="div_kuangti">
+                <div id="div_chaxun_buttons">
+                    <span class="div_control_text">查询功能</span><br>
+                    {% for gongneng in gongnenglist %}
+                        <button id="button_chaxun_{{gongneng['id']}}" name="button_chaxun_{{gongneng['id']}}" class="btn btn-primary btn-sm button_chaxun">{{gongneng['name']}}</button>
+                    {% endfor %}
+                </div>
+                <hr class="hr_inbox">
+                <div id="div_chaxun_jieguo">
+                    <span class="div_control_text">查询结果：</span>
+                    <div id="div_chaxun_jieguo_display"  class="div_text_back alert alert-info">
+                        <span class="div_display_text" id="chaxun_jieguo"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block script %}
+        {{ super() }}
+        <script type="text/javascript" src="{{ url_for("static", filename="myJs/proto_main.js")}}"></script>
+        <script type="text/javascript">
+            window.onload = function () {
+                createwebsocket();
+                rqstnknm();
+            };
+            var createwebsocket = function () {
+                var host = "ws://127.0.0.1:7777";
+                websocket = new WebSocket(host);
+                websocket.onopen = function () {
+                    document.getElementById("jiehsou_xianshi").innerText += "websocket连接成功！ \n ";
+                }
+                websocket.onmessage = function (message) {
+                    var viewdata = symbol(message.data + "\n\n");
+                    viewdata = decodeUnicode(viewdata);
+                    $("#jiehsou_xianshi").append(viewdata);
+                    var viewarea = document.getElementById("div_jiehsou_xianshi");
+                    viewarea.scrollTop = viewarea.scrollHeight - viewarea.clientHeight;
+                    websocket.send("1");
+                }
+                websocket.onclose = function () {
+                    document.getElementById("jiehsou_xianshi").innerText += "websocket连接已断开！";
+                }
+                websocket.onerror = function () {
+                    socket = null;
+                    console.log('websocket连接异常');
+                }
+            };
+            window.onbeforeunload = function () {
+                websocket.send("0");
+                websocket.close();
+                websocket = null;
+                console.log("websocket连接已断开！");
+            };
+        </script>
+    {% endblock %}
+{% endblock %}
